@@ -1,0 +1,60 @@
+C#企业级开发技术练习3答题卡
+
+班级：计算机信息管理1班
+姓名：李初阳
+学号：20190307123
+
+注：请将答案放置在序号下方。*/
+
+（一）  delegate double CalcD(float a, float b, float c);
+        class Program
+        {
+        static double CalSum (float a,float b,float c)
+        {
+            return a + b + c;
+        }
+        static double CalcMul(float a,float b,float c)
+        {
+            return a * b * c;
+        }
+        static void Main(string[] args)
+        {
+            CalcD cd = CalSum;
+            cd += CalcMul;
+            Console.WriteLine(cd(5.1f, 2.0f, 0.1f));
+            cd -= CalcMul;
+            Console.WriteLine(cd(5.1f, 2.0f, 0.1f));
+
+
+（二）  private static Action<decimal[]> ce;
+
+        static void CalcSum(decimal[] a)
+        {
+            Console.WriteLine($"总合:{a.Sum()}");
+        }
+        static void CalcAvg(decimal[] a)
+        {
+            Console.WriteLine($"平均值:{a.Average()}");
+        }
+        static void Main(string[] args)
+        {
+            Action<decimal[]> ce= CalcSum;
+            ce += CalcAvg;
+            ce(new[] { 1.2M, 8.9M, 2.1M, 9.9M });
+        }
+
+
+（三）  static void CalcJoin(string [] x)
+        {
+            Console.WriteLine(string.Join(",",x));
+        }
+        static void CalcConcat(string [] x)
+        {
+            Console.WriteLine(string.Concat(x));
+        }
+        static void Main(string[] args)
+        {
+            Action<string[]> ac =CalcJoin ;
+            ac +=CalcConcat ;
+            ac(new[] {"\"sql\"","\"cs\""});
+        }
